@@ -2,9 +2,9 @@
 
 let dt = 0.01
 
-let sigma=10. 
-let beta=8./3.
-let rho=28.0
+let sigma = 10. 
+let beta = 8. / 3.
+let rho = 28.0
 
 let lorentzDeriv (sigma: float) beta rho x y z =
      sigma * (y - x), 
