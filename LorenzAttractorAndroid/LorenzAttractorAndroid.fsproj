@@ -26,8 +26,7 @@
     <DefineConstants>DEBUG;ANDROID</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <Tailcalls>false</Tailcalls>
-    <PlatformTarget>
-    </PlatformTarget>
+    <PlatformTarget></PlatformTarget>
     <ConsolePause>false</ConsolePause>
     <AndroidLinkMode>None</AndroidLinkMode>
     <AndroidSupportedAbis>armeabi</AndroidSupportedAbis>
@@ -41,8 +40,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Tailcalls>true</Tailcalls>
     <ConsolePause>false</ConsolePause>
-    <PlatformTarget>
-    </PlatformTarget>
+    <PlatformTarget></PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -55,6 +53,12 @@
   <ItemGroup>
     <Compile Include="Resources\Resource.designer.fs" />
     <Compile Include="Properties\AssemblyInfo.fs" />
+    <Compile Include="..\LorenzAttractor\Misc.fs">
+      <Link>Misc.fs</Link>
+    </Compile>
+    <Compile Include="..\LorenzAttractor\CrossPlatformBitmap.fs">
+      <Link>CrossPlatformBitmap.fs</Link>
+    </Compile>
     <Compile Include="..\LorenzAttractor\Viewport3DBitmap.fs">
       <Link>Viewport3DBitmap.fs</Link>
     </Compile>

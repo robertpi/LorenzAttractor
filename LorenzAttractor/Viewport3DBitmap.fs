@@ -11,13 +11,7 @@ open Android.Graphics
 // http://anthony.liekens.net/index.php/Computers/RenderingTutorialRotations
 
 type Viewport3DBitmap(width: int, height: int) =
-    let bitmap = 
-#if ANDROID
-        Bitmap.CreateBitmap(width, height, Bitmap.Config.Argb8888)
-#else
-        new Bitmap(width, height)
-    let g = Graphics.FromImage(bitmap)
-#endif
+    let bitmap = new CrossPlatformBitmap(width, height)
     let xMax = float width
     let yMax = float height
 
@@ -43,17 +37,10 @@ type Viewport3DBitmap(width: int, height: int) =
     member __.Points 
         with set newPoints =
             points <- newPoints
-#if ANDROID
-            // TODO clearing the bitmap this way, is very slow, use Android drawing api?
-            for x in 0 .. width - 1 do
-                for y in 0 .. height - 1 do
-                    bitmap.SetPixel(x, y, Color.Black)
-#else
-            g.Clear(Color.Black)
-#endif
+            bitmap.Fill(Color.Black)
             for (x, y, z) in points do
                 let x', y' = map3dTo2d (x, y, z)
                 setPoint x' y' Color.White
         and get() = points
 
-    member __.Bitmap = bitmap
+    member __.Bitmap = bitmap.NativeBitmap
