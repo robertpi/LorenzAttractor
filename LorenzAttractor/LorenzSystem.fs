@@ -15,10 +15,10 @@ let lorentzDeriv (sigma: float) beta rho x y z =
 let rec integrate (func: float -> float -> float -> (float * float * float)) dt (x, y, z) =
     seq { yield (x, y, z)
           let x', y', z' = func x y z
-          let accumluate x x' = x + (dt * x') 
-          let x'' = accumluate x x'
-          let y'' = accumluate y y'
-          let z'' = accumluate z z'
+          let accumulate x x' = x + (dt * x') 
+          let x'' = accumulate x x'
+          let y'' = accumulate y y'
+          let z'' = accumulate z z'
           yield! integrate func dt (x'', y'', z'') }
 
 
