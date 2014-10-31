@@ -20,7 +20,7 @@ type Viewport3DBitmap(width: int, height: int) =
 
     let map3dTo2d (x3d, y3d, z3d) =
         let x2d = xOffSet + (x3d / (z3d + distance))
-        let y2d = xOffSet + (y3d / (z3d + distance))
+        let y2d = yOffSet + (y3d / (z3d + distance))
         x2d, y2d
 
 
