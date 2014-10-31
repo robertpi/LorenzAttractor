@@ -73,6 +73,7 @@
       <Link>LorenzViewModel.fs</Link>
     </Compile>
     <Compile Include="Program.fs" />
+    <None Include="registerurl.bat" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Frank">
