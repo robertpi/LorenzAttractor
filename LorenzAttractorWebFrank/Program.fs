@@ -1,6 +1,4 @@
-﻿// Learn more about F# at http://fsharp.net
-
-open System
+﻿open System
 open System.IO
 open System.Collections.Specialized
 open System.Drawing.Imaging
@@ -15,15 +13,7 @@ open System.Web.Http.SelfHost
 open Frank
 open FSharp.Control
 open FSharpx.Option
-open Newtonsoft.Json.Linq
 open ProgFs.CrossPlatform
-
-module Formatters =
-
-  // Common formatters
-  let formatters = [| new JsonMediaTypeFormatter() :> MediaTypeFormatter
-                      new XmlMediaTypeFormatter() :> MediaTypeFormatter
-                      new FormUrlEncodedMediaTypeFormatter() :> MediaTypeFormatter |]
 
 module HelloResource =
 
