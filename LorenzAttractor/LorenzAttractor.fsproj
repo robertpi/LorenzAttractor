@@ -49,9 +49,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Misc.fs" />
+    <Compile Include="LorenzSystem.fs" />
     <Compile Include="CrossPlatformBitmap.fs" />
     <Compile Include="Viewport3DBitmap.fs" />
-    <Compile Include="LorenzSystem.fs" />
     <Compile Include="LorenzViewModel.fs" />
     <Compile Include="ProgramWinForms.fs" />
     <None Include="App.config" />

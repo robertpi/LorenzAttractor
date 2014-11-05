@@ -60,14 +60,14 @@
     <Compile Include="..\LorenzAttractor\Misc.fs">
       <Link>Misc.fs</Link>
     </Compile>
+    <Compile Include="..\LorenzAttractor\LorenzSystem.fs">
+      <Link>LorenzSystem.fs</Link>
+    </Compile>
     <Compile Include="..\LorenzAttractor\CrossPlatformBitmap.fs">
       <Link>CrossPlatformBitmap.fs</Link>
     </Compile>
     <Compile Include="..\LorenzAttractor\Viewport3DBitmap.fs">
       <Link>Viewport3DBitmap.fs</Link>
-    </Compile>
-    <Compile Include="..\LorenzAttractor\LorenzSystem.fs">
-      <Link>LorenzSystem.fs</Link>
     </Compile>
     <Compile Include="..\LorenzAttractor\LorenzViewModel.fs">
       <Link>LorenzViewModel.fs</Link>
