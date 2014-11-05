@@ -1,5 +1,9 @@
 ﻿namespace ProgFs.CrossPlatform
+#if ANDROID
+open Android.Graphics
+#else
 open System.Drawing
+#endif
 
 // This webpage provides a good description of how to map 3D points on to a 2D plane: 
 // http://anthony.liekens.net/index.php/Computers/RenderingTutorial3DTo2D
