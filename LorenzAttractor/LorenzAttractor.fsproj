@@ -53,7 +53,7 @@
     <Compile Include="Viewport3DBitmap.fs" />
     <Compile Include="LorenzSystem.fs" />
     <Compile Include="LorenzViewModel.fs" />
-    <Compile Include="Program.fs" />
+    <Compile Include="ProgramWinForms.fs" />
     <None Include="App.config" />
   </ItemGroup>
   <PropertyGroup>
