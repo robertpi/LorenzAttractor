@@ -1,4 +1,5 @@
 ﻿namespace ProgFs.CrossPlatform
+open ProgFs.CrossPlatform
 #if ANDROID
 open Android.Graphics
 #else
@@ -30,7 +31,7 @@ type Viewport3DBitmap(width: int, height: int) =
 
     let setPoint x y color =
         let x' = int (x * xMax)
-        let y' = int (y * yMax)
+        let y' = int yMax - int (y * yMax)
         if 0 <= x' && x' < (int xMax) &&
            0 <= y' && y' < (int yMax) then
             bitmap.SetPixel(x', y', color)

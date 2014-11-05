@@ -66,14 +66,9 @@ let app : WebPart =
                 >>= Successful.ok(lorenzImage sigma beta rho))
     ]
 
-let mime_types =
-  Writers.default_mime_types_map
-    >=> (function | ".png" -> Writers.mk_mime_type "image/png" false | _ -> None)
-
 let config = 
     { default_config with
        bindings = [ { scheme = HTTP ; ip = IPAddress.Parse "127.0.0.1" ; port   = 8082us } ]
-       mime_types_map   = mime_types
     }
 
 web_server config app

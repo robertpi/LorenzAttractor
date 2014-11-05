@@ -50,8 +50,10 @@
   <ItemGroup>
     <Compile Include="Misc.fs" />
     <Compile Include="LorenzSystem.fs" />
+    <None Include="LorenzSystemTests.fsx" />
     <Compile Include="CrossPlatformBitmap.fs" />
     <Compile Include="Viewport3DBitmap.fs" />
+    <None Include="Viewport3DBitmapTests.fsx" />
     <Compile Include="LorenzViewModel.fs" />
     <Compile Include="ProgramWinForms.fs" />
     <None Include="App.config" />
