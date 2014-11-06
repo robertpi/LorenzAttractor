@@ -6,11 +6,7 @@ let sigma = 10.
 let beta = 8. / 3.
 let rho = 28.0
 
-let lorentzDeriv (sigma: float) beta rho x y z =
-     sigma * (y - x), 
-     x * (rho - z) - y, 
-     x * y - beta * z
-
+let lorentzDeriv (sigma: float) beta rho x y z = failwith "To be implemented for Task Two"
 
 let rec integrate (func: float -> float -> float -> (float * float * float)) dt (x, y, z) =
     seq { yield (x, y, z)

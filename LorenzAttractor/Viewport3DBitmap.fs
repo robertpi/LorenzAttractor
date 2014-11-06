@@ -23,18 +23,9 @@ type Viewport3DBitmap(width: int, height: int) =
     let xOffSet = 0.5
     let yOffSet = 0.5
 
-    let map3dTo2d (x3d, y3d, z3d) =
-        let x2d = xOffSet + (x3d / (z3d + distance))
-        let y2d = yOffSet + (y3d / (z3d + distance))
-        x2d, y2d
+    let map3dTo2d (x3d, y3d, z3d) = failwith "To be implemeneted for Task Two"
 
-
-    let setPoint x y color =
-        let x' = int (x * xMax)
-        let y' = int yMax - int (y * yMax)
-        if 0 <= x' && x' < (int xMax) &&
-           0 <= y' && y' < (int yMax) then
-            bitmap.SetPixel(x', y', color)
+    let setPoint x y color = failwith "To be implemeneted for Task Two"
 
     member __.Points 
         with set newPoints =

@@ -29,14 +29,7 @@ type MainActivity() =
         base.OnCreate(bundle)
         // Set our view from the "main" layout resource
         this.SetContentView(Resource_Layout.Main)
-        let imageView = this.FindViewById<ImageView>(Resource_Id.imageView)
-        imageView.SetImageBitmap(lorenzViewModel.Bitmap)
 
-        let sigma = this.FindViewById<EditText>(Resource_Id.sigma)
-        input sigma lorenzViewModel.Sigma (fun x -> lorenzViewModel.Sigma <- x)
-        let beta = this.FindViewById<EditText>(Resource_Id.beta)
-        input beta lorenzViewModel.Beta (fun x -> lorenzViewModel.Beta <- x)
-        let sigma = this.FindViewById<EditText>(Resource_Id.rho)
-        input sigma lorenzViewModel.Rho (fun x -> lorenzViewModel.Rho <- x)
+        // TODO: Task Six. Complete the connection of the various controls.
 
         lorenzViewModel.Updated.Add(fun _ -> imageView.Invalidate())

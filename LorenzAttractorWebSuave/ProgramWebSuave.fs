@@ -36,22 +36,13 @@ let getFormParam formData key defaultValue =
     |> Option.map (fun (_, value) -> Option.getWithDefault (string defaultValue) value |> float)
     |> Option.getWithDefault defaultValue
 
-let pageOfFormData formData =
+let pageOfFormData formData : string =
     let simga = getFormParam formData "sigma" LorenzSystem.sigma
     let beta = getFormParam formData "beta" LorenzSystem.beta
     let rho = getFormParam formData "rho" LorenzSystem.rho
     makePage simga beta rho
 
-let lorenzImage sigma beta rho =
-    let model = new LorenzViewModel(300, 300, sigma, beta, rho)
-    let memStream = new MemoryStream()
-    model.Bitmap.Save(memStream, ImageFormat.Png)
-    memStream.Flush()
-    let lengthAsInt = int memStream.Length
-    let output = Array.zeroCreate lengthAsInt : byte[]
-    memStream.Position <- 0L
-    memStream.Read(output, 0, lengthAsInt) |> ignore
-    output
+let lorenzImage sigma beta rho : byte[] = failwith "To be implemented for Task Five"
 
 let logger = Loggers.sane_defaults_for Debug
 
