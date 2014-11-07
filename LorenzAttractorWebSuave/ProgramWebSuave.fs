@@ -44,7 +44,7 @@ let pageOfFormData formData =
 
 let lorenzImage sigma beta rho =
     let model = new LorenzViewModel(300, 300, sigma, beta, rho)
-    let memStream = new MemoryStream()
+    use memStream = new MemoryStream()
     model.Bitmap.Save(memStream, ImageFormat.Png)
     memStream.Flush()
     let lengthAsInt = int memStream.Length

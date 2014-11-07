@@ -12,8 +12,9 @@ type LorenzViewModel(width: int, height: int, ?sigma: float, ?beta: float, ?rho:
     let viewport = new Viewport3DBitmap(width, height)
 
     let doUpdate() =
+        let lorentz = LorenzSystem.lorentzDeriv sigma beta rho
         let newPoints = 
-            LorenzSystem.integrate (LorenzSystem.lorentzDeriv sigma beta rho) LorenzSystem.dt (0.1, 0.1, 0.1)
+            LorenzSystem.integrate lorentz LorenzSystem.dt (0.1, 0.1, 0.1)
             |> Seq.take points
         viewport.Points <- newPoints
         updatedEvent.Trigger()

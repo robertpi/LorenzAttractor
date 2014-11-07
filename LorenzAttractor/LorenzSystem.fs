@@ -7,9 +7,10 @@ let beta = 8. / 3.
 let rho = 28.0
 
 let lorentzDeriv (sigma: float) beta rho x y z =
-     sigma * (y - x), 
-     x * (rho - z) - y, 
-     x * y - beta * z
+     let x' = sigma * (y - x)
+     let y' = x * (rho - z) - y
+     let z' = x * y - beta * z
+     x', y', z'
 
 
 let rec integrate (func: float -> float -> float -> (float * float * float)) dt (x, y, z) =
