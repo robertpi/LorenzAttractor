@@ -1,4 +1,8 @@
 ﻿namespace ProgFs.CrossPlatform
+open System
+open System.Collections.Generic
+open System.Drawing
+open System.Threading
 
 type LorenzViewModel(width: int, height: int, ?sigma: float, ?beta: float, ?rho: float) =
     let mutable sigma = Option.getWithDefault LorenzSystem.sigma sigma 
@@ -11,14 +15,46 @@ type LorenzViewModel(width: int, height: int, ?sigma: float, ?beta: float, ?rho:
 
     let viewport = new Viewport3DBitmap(width, height)
 
-    let doUpdate() =
-        let lorentz = LorenzSystem.lorentzDeriv sigma beta rho
-        let newPoints = 
-            LorenzSystem.integrate lorentz LorenzSystem.dt (0.1, 0.1, 0.1)
-            |> Seq.take points
-        viewport.Points <- newPoints
-        updatedEvent.Trigger()
+    let lorentz = LorenzSystem.lorentzDeriv sigma beta rho
 
+    let colors = [ Color.HotPink; Color.CornflowerBlue; Color.LightGoldenrodYellow]
+
+    let rnd = new Random()
+    
+    let getWindowedEnumerator() =
+        let windowedSeq =
+            LorenzSystem.integrate lorentz LorenzSystem.dt (rnd.NextDouble(), rnd.NextDouble(), rnd.NextDouble())
+            |> Seq.windowed 1000
+        windowedSeq.GetEnumerator()
+
+    let getListOfWindowedPoints() =
+        colors 
+        |> Seq.map (fun x -> x, getWindowedEnumerator()) 
+        |> List.ofSeq
+
+    let invertWindowedMatrix (windowed: seq<_*IEnumerator<_>>) =
+        seq { while true do
+               let nextPointSet =
+                    windowed 
+                    |> Seq.map (fun (color, x) -> 
+                        x.MoveNext() |> ignore
+                        color, x.Current :> seq<float*float*float>)
+               yield nextPointSet }
+
+    let startUpdateSequece() =
+        let syncContext = SynchronizationContext.Current
+        let sequenceOfWindowedPointsWithColors = invertWindowedMatrix (getListOfWindowedPoints())
+        async { for points in sequenceOfWindowedPointsWithColors do
+                    do! Async.SwitchToContext syncContext
+                    do viewport.Points <- points
+                    do updatedEvent.Trigger()
+                    do! Async.Sleep 30 }
+        |> Async.Start
+
+    let doUpdate() =
+        Async.CancelDefaultToken()
+        startUpdateSequece()
+    
     do doUpdate()
 
     member __.Updated = updatedEvent.Publish

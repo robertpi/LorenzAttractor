@@ -17,7 +17,7 @@ type Viewport3DBitmap(width: int, height: int) =
     let xMax = float width
     let yMax = float height
 
-    let mutable points = Seq.empty : seq<float*float*float>
+    let mutable points = Seq.empty : seq<Color*seq<float*float*float>>
 
     let distance = 35.
     let xOffSet = 0.5
@@ -40,9 +40,10 @@ type Viewport3DBitmap(width: int, height: int) =
         with set newPoints =
             points <- newPoints
             bitmap.Fill(Color.Black)
-            for (x, y, z) in points do
+            for (color, points) in points do
+                for x, y, z in points do
                 let x', y' = map3dTo2d (x, y, z)
-                setPoint x' y' Color.White
+                setPoint x' y' color
         and get() = points
 
     member __.Bitmap = bitmap.NativeBitmap

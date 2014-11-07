@@ -16,10 +16,14 @@ let input name left top value updateAction =
     input.TextChanged.Add(fun x -> doTextChange input.Text)
     control
 
+type DoubleBuffered() =
+    inherit Control()
+    do base.DoubleBuffered <- true
+
 let form =
     let form = new Form(Text = "Lorenz Attractor Viewer",
-                        Width = 550,
-                        Height = 660)
+                                  Width = 550,
+                                  Height = 660)
 
     let modelWidth = 500
     let modelHeight = 500
@@ -27,8 +31,8 @@ let form =
     let viewModel = new LorenzViewModel(modelWidth, modelHeight)
 
 
-    let lorenzBitmap = new Control(Width = modelWidth, Height = modelHeight,
-                                   Top = 10, Left = 20)
+    let lorenzBitmap = new DoubleBuffered(Width = modelWidth, Height = modelHeight,
+                                          Top = 10, Left = 20)
     lorenzBitmap.BackgroundImage <- viewModel.Bitmap
 
 
