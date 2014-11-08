@@ -1,7 +1,11 @@
 ﻿namespace ProgFs.CrossPlatform
 open System
 open System.Collections.Generic
+#if ANDROID
+open Android.Graphics
+#else
 open System.Drawing
+#endif
 open System.Threading
 
 type LorenzViewModel(width: int, height: int, ?sigma: float, ?beta: float, ?rho: float) =
